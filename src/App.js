@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
-  Link
+  useLocation
 } from "react-router-dom";
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
@@ -13,19 +13,28 @@ import Calculator from "./Pages/Calculator/Calculator.js";
 import Todo from "./Pages/Todo/Todo.js";
 
 export default function App() {
+  let location = useLocation();
+
+  const clickTest = () => {
+    console.log("aa", location);
+  }
+  
   return (
-    <Container fluid>
-      <Router>
+    <div className="d-flex flex-row" onClick={clickTest}>
+      <BrowserRouter>
         <Sidebar />
-        <Routes>
-          <Route path="/calculator" element={<Calculator />}>
-          </Route>
-          <Route path="/todo" element={<Todo />}>
-          </Route>
-          <Route path="/" element={<Todo />}>
-          </Route>
-        </Routes>
-      </Router>
-    </Container>
+        <Container fluid>
+          <header>akjsyd</header>
+          <Routes>
+            <Route path="/calculator" element={<Calculator />}>
+            </Route>
+            <Route path="/todo" element={<Todo />}>
+            </Route>
+            <Route path="/" element={<Todo />}>
+            </Route>
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    </div>
   )
 }

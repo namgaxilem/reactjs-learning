@@ -1,0 +1,55 @@
+$main-color: rgb(202, 86, 255);
+$main-background-color: rgb(19, 35, 41);
+$white-first: rgb(236, 237, 238);
+$white-second: rgb(178, 184, 190);
+
+.sidebar {
+  position: sticky;
+  width: 260px;
+  max-width: 260px;
+  height: 100vh;
+  background-color: $main-background-color;
+}
+
+.sidebar-header {
+  padding: 1em;
+
+  i {
+    font-size: 3em;
+    color: $main-color;
+  }
+
+  .sidebar-header-name h1 {
+    font-size: 2em;
+    color: $white-first;
+  }
+
+  .sidebar-header-name h2 {
+    font-size: 1em;
+    color: $white-second;
+  }
+}
+
+.sidebar-item, .sidebar-item-last {
+  height: 2.3em;
+  padding: 1em;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: $white-second;
+
+  &.active {
+    border-left: 1px solid $main-color;
+    color: $main-color;
+  }
+}
+
+.sidebar-item-last {
+  height: 4.5em;
+  border-top: 1px solid $white-second;
+
+  button {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+  }
+}
