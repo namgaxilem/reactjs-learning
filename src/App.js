@@ -4,7 +4,6 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import store, { increment } from './store/store';
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Sidebar from "./Sidebar.js";
@@ -15,8 +14,8 @@ import Todo from "./Pages/Todo/Todo.js";
 export default function App() {
 
   const clickTest = () => {
-    console.log("aa");
-    store.dispatch(increment);
+    // store.dispatch({ type: 'INCREMENT' });
+    // console.log("aa", increment.type);
   }
   
   return (

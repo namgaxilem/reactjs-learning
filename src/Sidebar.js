@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import './Sidebar.scss';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink
-} from "react-router-dom";
-import store from './store/store';
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from './store/counter/counterSlice'
 
 const Sidebar = props => {
   const [isExpanded, setIsExpanded] = useState(true);
+  const count = useSelector(state => state.counter.value);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -38,7 +36,7 @@ const Sidebar = props => {
           <div className={isExpanded ? "" : "collapse"}>Environments</div>
         </NavLink>
 
-        <div className="mt-auto">
+        <div className="mt-auto w-100">
           <NavLink to="/help" className="sidebar-item d-flex align-items-center">
             <i className="bi bi-question-circle me-2"></i>
             <div className={isExpanded ? "" : "collapse"}>Help</div>
@@ -49,8 +47,11 @@ const Sidebar = props => {
           </NavLink>
 
           <div className="sidebar-item-last d-flex align-items-center justify-content-between mt-3">
-            <div className={isExpanded ? "" : "collapse"}>{store.getState().count.toString()}</div>
-            <button onClick={() => setIsExpanded(!isExpanded)}>
+            <div className={isExpanded ? "" : "collapse"}>{count}</div>
+            <button onClick={() => {
+              setIsExpanded(!isExpanded);
+              dispatch(increment());
+            }}>
               <i className="bi bi-chevron-double-left"></i>
             </button>
           </div>
