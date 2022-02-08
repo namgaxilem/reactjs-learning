@@ -9,28 +9,45 @@ $white-second: rgb(178, 184, 190);
   max-width: 260px;
   height: 100vh;
   background-color: $main-background-color;
+
+  &.collapse {
+    width: 55px;
+  }
 }
 
 .sidebar-header {
   padding: 1em;
 
-  i {
-    font-size: 3em;
+  .main-logo {
+    font-size: 2.8em;
     color: $main-color;
+
+    &.collapse {
+      font-size: 1.2em;
+      display: block;
+    }
   }
 
-  .sidebar-header-name h1 {
-    font-size: 2em;
-    color: $white-first;
-  }
+  .sidebar-header-name {
+    &.collapse {
+      display: none;
+    }
 
-  .sidebar-header-name h2 {
-    font-size: 1em;
-    color: $white-second;
+    h1 {
+      font-size: 1.8em;
+      color: $white-first;
+    }
+
+    h2 {
+      font-size: 1em;
+      color: $white-second;
+    }
   }
 }
 
-.sidebar-item, .sidebar-item-last {
+.sidebar-item,
+.sidebar-item-last {
+  width: 100%;
   height: 2.3em;
   padding: 1em;
   text-decoration: none;
@@ -38,6 +55,17 @@ $white-second: rgb(178, 184, 190);
   color: $white-second;
 
   &.active {
+    border-left: 1px solid $main-color;
+    color: $main-color;
+  }
+
+  &.collapse {
+    display: none;
+  }
+}
+
+.sidebar-item {
+  &:hover {
     border-left: 1px solid $main-color;
     color: $main-color;
   }

@@ -2,9 +2,9 @@ import React from "react";
 import {
   BrowserRouter,
   Routes,
-  Route,
-  useLocation
+  Route
 } from "react-router-dom";
+import store, { increment } from './store/store';
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Sidebar from "./Sidebar.js";
@@ -13,10 +13,10 @@ import Calculator from "./Pages/Calculator/Calculator.js";
 import Todo from "./Pages/Todo/Todo.js";
 
 export default function App() {
-  let location = useLocation();
 
   const clickTest = () => {
-    console.log("aa", location);
+    console.log("aa");
+    store.dispatch(increment);
   }
   
   return (
