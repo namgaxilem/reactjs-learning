@@ -3,8 +3,8 @@ $main-background-color: rgb(19, 35, 41);
 $white-first: rgb(236, 237, 238);
 $white-second: rgb(178, 184, 190);
 
-.sidebar {
-  position: sticky;
+.sidenav {
+  position: fixed;
   width: 260px;
   max-width: 260px;
   height: 100vh;
@@ -15,7 +15,7 @@ $white-second: rgb(178, 184, 190);
   }
 }
 
-.sidebar-header {
+.sidenav-header {
   padding: 1em;
 
   .main-logo {
@@ -28,7 +28,7 @@ $white-second: rgb(178, 184, 190);
     }
   }
 
-  .sidebar-header-name {
+  .sidenav-header-name {
     &.collapse {
       display: none;
     }
@@ -45,8 +45,8 @@ $white-second: rgb(178, 184, 190);
   }
 }
 
-.sidebar-item,
-.sidebar-item-last {
+.sidenav-item,
+.sidenav-item-last {
   width: 100%;
   height: 2.3em;
   padding: 1em;
@@ -64,14 +64,14 @@ $white-second: rgb(178, 184, 190);
   }
 }
 
-.sidebar-item {
+.sidenav-item {
   &:hover {
     border-left: 1px solid $main-color;
     color: $main-color;
   }
 }
 
-.sidebar-item-last {
+.sidenav-item-last {
   height: 4.5em;
   border-top: 1px solid $white-second;
 

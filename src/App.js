@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+import './App.scss';
 
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
-import Sidebar from "./Sidebar.js";
+import Sidenav from "./components/Sidenav/Sidenav";
+import Catalog from "./components/Catalog/Catalog";
 
-import Calculator from "./Pages/Calculator/Calculator.js";
-import Todo from "./Pages/Todo/Todo.js";
+function App() {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const minimizeSidenav = () => setIsExpanded(!isExpanded);
 
-export default function App() {
-
-  const clickTest = () => {
-    // store.dispatch({ type: 'INCREMENT' });
-    // console.log("aa", increment.type);
-  }
-  
   return (
-    <div className="d-flex flex-row" onClick={clickTest}>
+    <div className="d-flex flex-row overflow-hidden">
       <BrowserRouter>
-        <Sidebar />
-        <Container fluid>
-          <header>akjsyd</header>
-          <Routes>
-            <Route path="/calculator" element={<Calculator />}>
-            </Route>
-            <Route path="/todo" element={<Todo />}>
-            </Route>
-            <Route path="/" element={<Todo />}>
-            </Route>
-          </Routes>
-        </Container>
+        <Sidenav minimizeSidenav={minimizeSidenav} isExpanded={isExpanded}/>
+        <div className={`w-100 page-wrapper ${isExpanded ? "expanded" : ""}`}>
+          <header className="page-title ps-2"><h1>Page Title</h1></header>
+          <div className="page-content p-2">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />}>
+              </Route>
+              <Route path="/catalog" element={<Catalog />}>
+              </Route>
+              <Route path="/environments" element={<Environments />}>
+              </Route>
+              <Route path="/" element={<Dashboard />}>
+              </Route>
+            </Routes>
+          </div>
+        </div>
       </BrowserRouter>
     </div>
   )
 }
+
+function Dashboard() {
+  return <> 
+   {[...Array(100).keys()].map(e => <h1>Dashboard</h1>)}
+  </>;
+}
+
+function Environments() {
+  return <h1>Environments</h1>
+}
+
+export default App;
