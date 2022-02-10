@@ -19,7 +19,7 @@ function App() {
         <Sidenav minimizeSidenav={minimizeSidenav} isExpanded={isExpanded}/>
         <div className={`w-100 page-wrapper ${isExpanded ? "expanded" : ""}`}>
           <header className="page-title ps-2"><h1>Page Title</h1></header>
-          <div className="page-content p-2">
+          <div className="page-content p-4">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />}>
               </Route>
