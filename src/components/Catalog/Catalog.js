@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CatalogDetail from "../CatalogDetail/CatalogDetail";
+import { useDispatch } from 'react-redux';
+import { changeTitle } from "../../store/title/titleSlice";
 
 function Catalog() {
+  const dispatch = useDispatch();
   const [catalogList, setCatalogList] = useState([
     {
       id: 1,
@@ -17,6 +20,10 @@ function Catalog() {
     }
   ]);
 
+  useEffect(() => {
+    dispatch(changeTitle("Flow Catalog"));
+  })
+
   return (<>
     <CatalogDetail />
     <div>
@@ -30,7 +37,6 @@ function Catalog() {
       </p>
     </div>
     <div className="" style={{ clear: "both" }}></div>
-    <h1>Catalog</h1>
 
     <table className="table table-hover">
       <thead>

@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import './Sidenav.scss';
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from '../../store/counter/counterSlice'
 
 const Sidenav = props => {
-  const count = useSelector(state => state.counter.value);
-  const dispatch = useDispatch();
-
   const minimizeSidenav = () => {
-    dispatch(increment());
     props.minimizeSidenav();
   };
 
@@ -50,7 +44,6 @@ const Sidenav = props => {
           </NavLink>
 
           <div className="sidenav-item-last d-flex align-items-center justify-content-between mt-3">
-            <div className={props.isExpanded ? "" : "collapse"}>{count}</div>
             <button onClick={minimizeSidenav}>
               <i className="bi bi-chevron-double-left"></i>
             </button>
