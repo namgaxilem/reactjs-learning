@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { changeTitle } from "../../store/title/titleSlice";
-import './Dashboard.scss';
+import './Environments.less';
 
-function Dashboard() {
+function Environments() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(changeTitle("Dashboard"));
+    dispatch(changeTitle("Environments"));
   });
 
   return (<>
-    <h1> Dashboard</h1>
+    <h1>Environments</h1>
   </>
   )
 }
 
-export default Dashboard;
+export default Environments;

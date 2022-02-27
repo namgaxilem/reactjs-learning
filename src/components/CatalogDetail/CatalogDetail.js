@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CatalogDetail.scss';
+import './CatalogDetail.less';
 
 function CatalogDetail() {
   return (
@@ -10,6 +10,8 @@ function CatalogDetail() {
             <p className="your-cart">Your Cart</p>
             <a className="close-cart-btn" data-bs-dismiss="modal">X</a>
           </header>
+
+          <a data-bs-toggle="modal" href="#myModal" class="btn btn-primary">Launch modal</a>
 
           <footer className="cart_footer p-2">
             <div className="cart_total mb-1">

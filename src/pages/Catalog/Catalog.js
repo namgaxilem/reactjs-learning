@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CatalogDetail from "../CatalogDetail/CatalogDetail";
+import CatalogDetail from "../../components/CatalogDetail/CatalogDetail";
 import { useDispatch } from 'react-redux';
 import { changeTitle } from "../../store/title/titleSlice";
 
@@ -26,6 +26,32 @@ function Catalog() {
 
   return (<>
     <CatalogDetail />
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Modal 1</h4>
+
+          </div>
+          <div class="container"></div>
+          <div class="modal-body">Content for the dialog / modal goes here.
+            <br />
+            <br />
+            <br />
+            <p>more content</p>
+            <br />
+            <br />
+            <br />	<a data-bs-toggle="modal" href="#myModal2" class="btn btn-primary">Launch modal</a>
+
+          </div>
+          <div class="modal-footer">	<a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">Save changes</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
     <div>
       <button className="btn btn-primary float-end">
         <i className="bi bi-upload me-2"></i>
