@@ -17,34 +17,34 @@ const App = () => {
 
     const steps = [
         {
-            title: 'First',
+            title: 'Overview',
             content: 'First-content',
         },
         {
-            title: 'Second',
+            title: 'Flow Parameters',
             content: 'Second-content',
         },
         {
-            title: 'Last',
+            title: 'Preview',
             content: 'Last-content',
         },
     ];
 
     return <Layout style={{ height: "100vh" }}>
-        <Header>Header</Header>
+        <Header>nifi-demo-jam / New Flow Deployment</Header>
         <Content>
             <Row>
-                <Col span={8}>
-                    <Steps current={current} direction="vertical">
+                <Col span={6} style={{ padding: '1em', }}>
+                    <Steps current={current} direction="vertical" size="large">
                         {steps.map(item => (
                             <Step key={item.title} title={item.title} />
                         ))}
                     </Steps>
                 </Col>
-                <Col span={8}>
+                <Col span={11}>
                     <div className="steps-content">{steps[current].content}</div>
                 </Col>
-                <Col span={8}>
+                <Col span={7}>
                     detail
                 </Col>
             </Row>
