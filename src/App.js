@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './App.less';
 import { useSelector } from 'react-redux';
-import Steps from "./pages/Steps/Steps";
+import Steps from "./pages/MultiStepInit/MultiStepInit";
 import RouteWithSidenav from "./pages/RouteWithSidenav/RouteWithSidenav";
 
 function App() {
@@ -18,6 +18,8 @@ function App() {
         <Route path="/dashboard" element={<RouteWithSidenav />}>
         </Route>
         <Route path="/steps" element={<Steps />}>
+        </Route>
+        <Route path="/" element={<Steps />}>
         </Route>
       </Routes>
     </BrowserRouter>
