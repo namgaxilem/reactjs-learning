@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './NifiNode.module.less';
 import { Form, Input, Collapse, Radio, Card, Row, Col, Divider, Space, Select } from 'antd';
+import styles from '../MultiStepInit.module.less'
 
-const NifiNode = () => {
+const Preview = () => {
   return <>
     <Form
       className={styles.formWrapper}
@@ -272,4 +272,4 @@ const NifiNode = () => {
   </>
 }
 
-export default NifiNode;
+export default Preview;

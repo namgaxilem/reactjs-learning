@@ -5,12 +5,15 @@ import styles from './MultiStepInit.module.less';
 import AKSCluster from './AKSCluster/AKSCluster';
 import Secrets from './Secrets/Secrets';
 import NifiNode from "./NifiNode/NifiNode";
+import Grafana from "./Grafana/Grafana";
+import Prometheus from "./Prometheus/Prometheus";
+import Preview from "./Preview/Preview";
 
 const { Step } = Steps;
 const { Header, Content, Footer } = Layout;
 
 const MultiStepInit = () => {
-  const [current, setCurrent] = React.useState(2);
+  const [current, setCurrent] = React.useState(5);
 
   const next = () => {
     setCurrent(current + 1);
@@ -36,6 +39,18 @@ const MultiStepInit = () => {
     {
       title: 'Nifi Agent',
       content: <h1>Nifi Agent</h1>,
+    },
+    {
+      title: 'Grafana',
+      content: <Grafana />,
+    },
+    {
+      title: 'Prometheus',
+      content: <Prometheus />,
+    },
+    {
+      title: 'Preview',
+      content: <Preview />,
     },
   ];
 
