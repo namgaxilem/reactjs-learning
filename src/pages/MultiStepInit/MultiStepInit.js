@@ -13,7 +13,7 @@ const { Step } = Steps;
 const { Header, Content, Footer } = Layout;
 
 const MultiStepInit = () => {
-  const [current, setCurrent] = React.useState(5);
+  const [current, setCurrent] = React.useState(6);
 
   const next = () => {
     setCurrent(current + 1);
