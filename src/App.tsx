@@ -6,20 +6,20 @@ import {
 } from "react-router-dom";
 import './App.less';
 import { useSelector } from 'react-redux';
-import Steps from "./pages/MultiStepInit/MultiStepInit";
+import Initializer from "./pages/Initializer/Initializer";
 import RouteWithSidenav from "./pages/RouteWithSidenav/RouteWithSidenav";
 
 function App() {
-  const title = useSelector(state => state.title.value);
+  // const title = useSelector(state => state.title.value);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dashboard" element={<RouteWithSidenav />}>
+        <Route path="/catalog/deploy-flow" element={<Initializer />}>
         </Route>
-        <Route path="/steps" element={<Steps />}>
+        <Route path="/environments/initializer" element={<Initializer />}>
         </Route>
-        <Route path="/" element={<Steps />}>
+        <Route path="*" element={<RouteWithSidenav />}>
         </Route>
       </Routes>
     </BrowserRouter>
