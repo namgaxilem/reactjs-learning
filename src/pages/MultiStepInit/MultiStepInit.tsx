@@ -1,7 +1,6 @@
 import React from "react";
 import { Steps, Button, message, Row, Col, Layout, } from 'antd';
 import styles from './MultiStepInit.module.less';
-
 import AKSCluster from './AKSCluster/AKSCluster';
 import Secrets from './Secrets/Secrets';
 import NifiNode from "./NifiNode/NifiNode";
@@ -59,7 +58,7 @@ const MultiStepInit = () => {
     <Content className={styles.content}>
       <Row style={{ height: '100%' }}>
         <Col span={6} style={{ padding: '1em', }}>
-          <Steps current={current} direction="vertical" size="large">
+          <Steps current={current} direction="vertical">
             {steps.map(item => (
               <Step key={item.title} title={item.title} />
             ))}
