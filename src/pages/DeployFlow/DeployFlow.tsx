@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { changeTitle } from "../../store/title/titleSlice";
-import MultiStepInitializer from "components/MultiStepInitializer/MultiStepInitializer";
+import MultiStepDeployFlow from "components/MultiStepDeployFlow/MultiStepDeployFlow";
 
-const Initializer = () => {
+const DeployFlow = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(changeTitle("Initializer"));
+    dispatch(changeTitle("DeployFlow"));
   });
 
   return <>
-    <MultiStepInitializer />
+    <MultiStepDeployFlow />
   </>
 }
 
-export default Initializer;
+export default DeployFlow;

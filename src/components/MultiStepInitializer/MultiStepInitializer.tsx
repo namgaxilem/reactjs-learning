@@ -1,6 +1,6 @@
 import React from "react";
 import { Steps, Button, message, Row, Col, Layout, } from 'antd';
-import styles from './MultiStepInit.module.less';
+import styles from './MultiStepInitializer.module.less';
 import AKSCluster from './AKSCluster/AKSCluster';
 import Secrets from './Secrets/Secrets';
 import NifiNode from "./NifiNode/NifiNode";
@@ -11,7 +11,7 @@ import Preview from "./Preview/Preview";
 const { Step } = Steps;
 const { Header, Content, Footer } = Layout;
 
-const MultiStepInit = () => {
+const MultiStepInitializer = () => {
   const [current, setCurrent] = React.useState(6);
 
   const next = () => {
@@ -103,4 +103,4 @@ const MultiStepInit = () => {
   </Layout>
 };
 
-export default MultiStepInit;
+export default MultiStepInitializer;

@@ -6,8 +6,9 @@ import {
 } from "react-router-dom";
 import './App.less';
 import { useSelector } from 'react-redux';
-import Initializer from "./pages/Initializer/Initializer";
-import RouteWithSidenav from "./pages/RouteWithSidenav/RouteWithSidenav";
+import DeployFlow from "pages/DeployFlow/DeployFlow";
+import Initializer from "pages/Initializer/Initializer";
+import RouteWithSidenav from "pages/RouteWithSidenav/RouteWithSidenav";
 
 function App() {
   // const title = useSelector(state => state.title.value);
@@ -15,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/catalog/deploy-flow" element={<Initializer />}>
+        <Route path="/catalog/deploy-flow" element={<DeployFlow />}>
         </Route>
         <Route path="/environments/initializer" element={<Initializer />}>
         </Route>

@@ -1,41 +1,36 @@
 import React, { useState } from 'react';
 import { Drawer, Button, Space } from 'antd';
 import { DrawerProps } from 'antd/es/drawer';
+import { useNavigate } from 'react-router-dom';
 
 const CatalogDetail: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const [size, setSize] = useState<DrawerProps['size']>();
-  const showDefaultDrawer = () => {
-    setSize('default');
+  const navigate = useNavigate();
+
+  const showDrawer = () => {
     setVisible(true);
   };
-  const showLargeDrawer = () => {
-    setSize('large');
-    setVisible(true);
-  };
+
   const onClose = () => {
     setVisible(false);
   };
+
   return (
     <>
       <Space>
-        <Button type="primary" onClick={showDefaultDrawer}>
+        <Button type="primary" onClick={showDrawer}>
           Open Default Size (378px)
-        </Button>
-        <Button type="primary" onClick={showLargeDrawer}>
-          Open Large Size (736px)
         </Button>
       </Space>
       <Drawer
-        title={`${size} Drawer`}
+        title={`Drawer`}
         placement="right"
-        size={size}
         onClose={onClose}
         visible={visible}
         extra={
           <Space>
             <Button onClick={onClose}>Cancel</Button>
-            <Button type="primary" onClick={onClose}>
+            <Button type="primary" onClick={() => navigate('/catalog/deploy-flow')}>
               OK
             </Button>
           </Space>

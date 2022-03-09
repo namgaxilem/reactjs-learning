@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Collapse, Radio, Card, Row, Col, Divider, Space, Select } from 'antd';
-import styles from '../MultiStepInit.module.less'
+import styles from '../MultiStepInitializer.module.less'
 
 const Prometheus = () => {
   return <>
