@@ -1,6 +1,5 @@
+import { Button, Drawer, Space } from 'antd';
 import React, { useState } from 'react';
-import { Drawer, Button, Space } from 'antd';
-import { DrawerProps } from 'antd/es/drawer';
 import { useNavigate } from 'react-router-dom';
 
 const CatalogDetail: React.FC = () => {

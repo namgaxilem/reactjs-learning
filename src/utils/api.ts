@@ -76,3 +76,4 @@ const clientCatalog = new RestClient(config.catalogURL)
 export {
   clientCatalog
 }
+
