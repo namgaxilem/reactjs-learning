@@ -25,7 +25,8 @@ const MultiStepInitializer = () => {
   const steps = [
     {
       title: 'AKSCluster',
-      content: <AKSCluster />,
+      content: <AKSCluster 
+      />,
     },
     {
       title: 'Secrets',
