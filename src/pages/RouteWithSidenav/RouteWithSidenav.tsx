@@ -1,22 +1,16 @@
-import React, { useState } from "react";
-import {
-	BrowserRouter,
-	Routes,
-	Route,
-	NavLink
-} from "react-router-dom";
-import { Layout, Menu, Breadcrumb } from 'antd';
 import {
 	DesktopOutlined,
-	PieChartOutlined,
-	FileOutlined,
-	TeamOutlined,
-	UserOutlined,
+	PieChartOutlined, TeamOutlined
 } from '@ant-design/icons';
-import Dashboard from "../Dashboard/Dashboard";
+import { Layout, Menu } from 'antd';
+import { useState } from "react";
+import {
+	Navigate, NavLink, Route, Routes
+} from "react-router-dom";
 import Catalog from "../Catalog/Catalog";
+import Dashboard from "../Dashboard/Dashboard";
 import Environments from "../Environments/Environments";
-import styles from './RouteWithSidenav.module.less'
+import styles from './RouteWithSidenav.module.less';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -55,6 +49,8 @@ const RouteWithSidenav = () => {
 							<Route path="/catalog" element={<Catalog />}>
 							</Route>
 							<Route path="/environments" element={<Environments />}>
+							</Route>
+							<Route path="/*" element={<Navigate to={"/dashboard"} />}>
 							</Route>
 						</Routes>
 					</div>
