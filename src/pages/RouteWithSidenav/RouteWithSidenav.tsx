@@ -4,9 +4,7 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useState } from "react";
-import {
-	Navigate, NavLink, Route, Routes
-} from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import Catalog from "../Catalog/Catalog";
 import Dashboard from "../Dashboard/Dashboard";
 import Environments from "../Environments/Environments";
@@ -50,7 +48,7 @@ const RouteWithSidenav = () => {
 							</Route>
 							<Route path="/environments" element={<Environments />}>
 							</Route>
-							<Route path="/*" element={<Navigate to={"/dashboard"} />}>
+							<Route path="/*" element={<Dashboard />}>
 							</Route>
 						</Routes>
 					</div>
