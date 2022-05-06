@@ -8,6 +8,7 @@ interface ContextProps {
   login: any;
   logout: any;
   isStoredToken: () => boolean;
+  restore: () => Promise<void>;
 }
 
 const AuthContext = createContext({} as ContextProps);
@@ -20,7 +21,7 @@ const AuthProvider = (props: any) => {
         clientId: AADConfig.appId,
         redirectUri: AADConfig.redirectUri,
         authority: AADConfig.authority,
-        postLogoutRedirectUri: AADConfig.logoutRedirectUri
+        postLogoutRedirectUri: AADConfig.logoutRedirectUri,
       },
       cache: {
         cacheLocation: "localStorage",
@@ -85,6 +86,18 @@ const AuthProvider = (props: any) => {
     return false;
   };
 
+  const restore = (): Promise<void> => {
+    const userJSON = localStorage.getItem(config.localStorage.userKey);
+    if (userJSON) {
+      let user: User | null;
+      user = JSON.parse(userJSON);
+      setUser(user);
+    } else {
+      setUser(null);
+    }
+    return Promise.resolve();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -92,6 +105,7 @@ const AuthProvider = (props: any) => {
         login,
         logout,
         isStoredToken,
+        restore,
       }}
     >
       <>{props.children}</>
@@ -104,4 +118,3 @@ const useAuth = () => {
 };
 
 export { AuthProvider, useAuth };
-

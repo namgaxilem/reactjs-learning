@@ -1,11 +1,11 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import "./App.less";
+import { useAuth } from "context/auth";
 import DeployFlow from "pages/DeployFlow/DeployFlow";
 import Initializer from "pages/Initializer/Initializer";
-import RouteWithSidenav from "pages/RouteWithSidenav/RouteWithSidenav";
 import Login from "pages/Login/Login";
-import { useAuth } from "context/auth";
+import RouteWithSidenav from "pages/RouteWithSidenav/RouteWithSidenav";
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.less";
 
 const NotFoundRedirect = () => <Navigate to="/" />;
 

@@ -1,18 +1,20 @@
 import {
-	DesktopOutlined,
-	DownOutlined,
-	PieChartOutlined,
-	TeamOutlined
+  DesktopOutlined,
+  DownOutlined,
+  PieChartOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import {
-	Button,
-	Dropdown,
-	Layout,
-	Menu, Space,
-	Typography
+  Avatar,
+  Button,
+  Dropdown,
+  Layout,
+  Menu,
+  Space,
+  Typography,
 } from "antd";
 import { useAuth } from "context/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import Catalog from "../Catalog/Catalog";
 import Dashboard from "../Dashboard/Dashboard";
@@ -23,13 +25,17 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const RouteWithSidenav = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, logout, restore } = useAuth();
 
   const handleMenuClick = (e) => {
     if (e.key === "1") {
       logout();
     }
   };
+
+  useEffect(() => {
+    restore();
+  }, []);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -40,7 +46,9 @@ const RouteWithSidenav = () => {
   );
 
   return (
-    <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
+    <Layout
+      style={{ minHeight: "100vh", overflow: "hidden" }}
+    >
       <Sider
         theme={"dark"}
         collapsible
@@ -48,6 +56,7 @@ const RouteWithSidenav = () => {
         onCollapse={() => setCollapsed(!collapsed)}
       >
         <div className={styles.logo} />
+
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1" icon={<PieChartOutlined />}>
             <NavLink to="/dashboard">
@@ -65,17 +74,27 @@ const RouteWithSidenav = () => {
             </NavLink>
           </Menu.Item>
         </Menu>
+
+        {/* <Menu
+          theme="light"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+        >
+          <Menu.Item key="4" icon={<TeamOutlined />}>
+            <NavLink to={''}>
+              <div>Logout</div>
+            </NavLink>
+          </Menu.Item>
+        </Menu> */}
       </Sider>
       <Layout className="site-layout">
         <Header className={styles.siteLayoutBackground} style={{ padding: 0 }}>
-          <Dropdown overlay={menu}>
-            <Button>
-              <Space>
-                {user && user.name}
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
+          <Space className={styles.avatar}>
+            <Typography.Text>{user && user.name}</Typography.Text>
+            <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+              {user?.name?.charAt(0)}
+            </Avatar>
+          </Space>
         </Header>
         <Content className={styles.siteLayoutContent}>
           <div
@@ -86,7 +105,7 @@ const RouteWithSidenav = () => {
               <Route path="/dashboard" element={<Dashboard />}></Route>
               <Route path="/catalog" element={<Catalog />}></Route>
               <Route path="/environments" element={<Environments />}></Route>
-              <Route path="/*" element={<Navigate to='/dashboard' />}></Route>
+              <Route path="/*" element={<Navigate to="/dashboard" />}></Route>
             </Routes>
           </div>
         </Content>
