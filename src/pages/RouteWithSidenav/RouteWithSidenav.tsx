@@ -46,9 +46,7 @@ const RouteWithSidenav = () => {
   );
 
   return (
-    <Layout
-      style={{ minHeight: "100vh", overflow: "hidden" }}
-    >
+    <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
       <Sider
         theme={"dark"}
         collapsible
@@ -89,12 +87,14 @@ const RouteWithSidenav = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className={styles.siteLayoutBackground} style={{ padding: 0 }}>
-          <Space className={styles.avatar}>
-            <Typography.Text>{user && user.name}</Typography.Text>
-            <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
-              {user?.name?.charAt(0)}
-            </Avatar>
-          </Space>
+          <Dropdown overlay={menu} placement="bottom" trigger={["click"]}>
+            <Space className={styles.avatar}>
+              <Typography.Text>{user && user.name}</Typography.Text>
+              <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+                {user?.name?.charAt(0)}
+              </Avatar>
+            </Space>
+          </Dropdown>
         </Header>
         <Content className={styles.siteLayoutContent}>
           <div
