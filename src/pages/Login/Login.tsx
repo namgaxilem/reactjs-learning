@@ -8,71 +8,30 @@ import {
   Input,
   Layout,
   notification,
-  Typography,
+  Typography
 } from "antd";
 import MS_LOGO from "assets/ms_logo.png";
+import { useAuth } from "context/auth";
 import styles from "./Login.module.less";
-import { PublicClientApplication } from "@azure/msal-browser";
-import { AADConfig, config } from "config/config";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "store/user/userSlice";
-import User from "types/User";
 
 const { Text } = Typography;
 
 const Login = () => {
-  const user: User = useSelector((state: any) => state.user);
-  const dispatch = useDispatch();
+  const { login } = useAuth();
   const [form] = Form.useForm();
-  const [publicClientApplication] = useState<PublicClientApplication>(
-    new PublicClientApplication({
-      auth: {
-        clientId: AADConfig.appId,
-        redirectUri: AADConfig.redirectUri,
-        authority: AADConfig.authority,
-      },
-      cache: {
-        cacheLocation: "localStorage",
-        storeAuthStateInCookie: true,
-      },
-    })
-  );
 
-  useEffect(() => {
-    localStorage.setItem(config.localStorage.userKey, JSON.stringify(user))
-    if (user) {
-      window.location.reload();
-    }
-  }, [user]);
 
   const onFinish = () => {
     const args = {
       message: "Notification",
-      description:
-        "Currently only support AAD authentication",
+      description: "Currently only support AAD authentication",
     };
     notification.open(args);
   };
 
   const onAADLoginClick = async () => {
-    try {
-      const loginResponse = await publicClientApplication.loginPopup({
-        scopes: AADConfig.scopes,
-      });
-      loginResponse &&
-        dispatch(
-          setUser({
-            email: loginResponse.account && loginResponse.account.username,
-            name: loginResponse.account && loginResponse.account.name,
-            tokenType: loginResponse.tokenType,
-            token: loginResponse.accessToken,
-            expiresOn: loginResponse.expiresOn && loginResponse.expiresOn.getTime(),
-          })
-        );
-    } catch (err) {
-      console.log(err);
-    }
+    await login();
+    window.location.reload()
   };
 
   return (
@@ -92,7 +51,6 @@ const Login = () => {
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinish}
-          autoComplete="off"
           layout="vertical"
         >
           <Form.Item

@@ -1,9 +1,10 @@
 interface User {
-    email?: string
-    name?: string    
-    tokenType?: string
-    token?: string
-    expiresOn?: number
+    email?: string | null
+    name?: string | null
+    tokenType?: string | null
+    token?: string | null,
+    homeAccountId?: string | null
+    expiresOn?: number | null
 }
 
 export default User

@@ -8,6 +8,7 @@ const config = {
 const AADConfig = {
   appId: 'dc8f3d14-355c-4223-80cb-23e938c26027',
   redirectUri: 'http://localhost:3000',
+  logoutRedirectUri: 'http://localhost:3000/login',
   scopes: [
       'user.read'
   ],
