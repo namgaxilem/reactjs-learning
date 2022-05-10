@@ -5,7 +5,7 @@ import User from "types/User";
 
 interface ContextProps {
   user: User | null;
-  login: any;
+  login: () => Promise<any>;
   logout: any;
   isStoredToken: () => boolean;
   restore: () => Promise<void>;
@@ -116,10 +116,12 @@ const AuthProvider = (props: any) => {
           config.localStorage.userKey,
           JSON.stringify(cloneUser)
         );
+        return Promise.resolve("OK")
       }
     } catch (err) {
       console.log(err);
       setUser(null);
+      return Promise.reject("Not OK")
     }
   };
 

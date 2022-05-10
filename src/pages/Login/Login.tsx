@@ -8,7 +8,7 @@ import {
   Input,
   Layout,
   notification,
-  Typography
+  Typography,
 } from "antd";
 import MS_LOGO from "assets/ms_logo.png";
 import { useAuth } from "context/auth";
@@ -29,8 +29,13 @@ const Login = () => {
   };
 
   const onAADLoginClick = async () => {
-    await login();
-    window.location.reload()
+    try {
+      const res = await login();
+      console.log("Ok", res);
+      window.location.reload()
+    } catch (err) {
+      console.log("Not ok", err);
+    }
   };
 
   return (
