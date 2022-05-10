@@ -11,7 +11,7 @@ import {
 } from "antd";
 import { useAuth } from "context/auth";
 import Rooms from "pages/Rooms/Rooms";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import Catalog from "../Catalog/Catalog";
 import Dashboard from "../Dashboard/Dashboard";
@@ -22,17 +22,13 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const RouteWithSidenav = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { user, logout, restore } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleMenuClick = (e) => {
     if (e.key === "1") {
       logout();
     }
   };
-
-  // useEffect(() => {
-  //   restore();
-  // }, []);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -52,7 +48,7 @@ const RouteWithSidenav = () => {
       >
         <div className={styles.logo} />
 
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys={["4"]} mode="inline">
           <Menu.Item key="1" icon={<PieChartOutlined />}>
             <NavLink to="/dashboard">
               <div>Dashboard</div>
@@ -75,17 +71,6 @@ const RouteWithSidenav = () => {
           </Menu.Item>
         </Menu>
 
-        {/* <Menu
-          theme="light"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-        >
-          <Menu.Item key="4" icon={<TeamOutlined />}>
-            <NavLink to={''}>
-              <div>Logout</div>
-            </NavLink>
-          </Menu.Item>
-        </Menu> */}
       </Sider>
       <Layout className="site-layout">
         <Header className={styles.siteLayoutBackground} style={{ padding: 0 }}>
@@ -108,7 +93,7 @@ const RouteWithSidenav = () => {
               <Route path="/catalog" element={<Catalog />}></Route>
               <Route path="/environments" element={<Environments />}></Route>
               <Route path="/rooms" element={<Rooms />}></Route>
-              <Route path="/*" element={<Navigate to="/dashboard" />}></Route>
+              <Route path="/*" element={<Navigate to="/rooms" />}></Route>
             </Routes>
           </div>
         </Content>
