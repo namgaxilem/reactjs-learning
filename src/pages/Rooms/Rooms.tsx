@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeTitle } from "../../store/title/titleSlice";
 
-const room_data = {
-    // id: randomUUID(),
-
-}
+const room_data = [{
+    id: 1,
+    name: 'Phòng 1',
+    floor: 1,
+    
+}]
 
 const Rooms = () => {
   const dispatch = useDispatch();

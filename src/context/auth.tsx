@@ -42,7 +42,6 @@ const AuthProvider = (props: any) => {
       return;
     }
 
-    console.log(2, user?.homeAccountId);
     if (publicClientApplication.getAccountByHomeId(user?.homeAccountId || "")) {
       var tokenRequest = {
         scopes: ["api://9911dd89-b9c5-4de4-b3bb-265d5c214e91/read-test"],
