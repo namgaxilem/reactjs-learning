@@ -1,6 +1,6 @@
 import { PublicClientApplication } from "@azure/msal-browser";
 import { AADConfig, config } from "config/config";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import User from "types/User";
 
 interface ContextProps {
@@ -9,6 +9,7 @@ interface ContextProps {
   logout: any;
   isStoredToken: () => boolean;
   restore: () => Promise<void>;
+  acquireAccessToken: () => any;
 }
 
 const AuthContext = createContext({} as ContextProps);
@@ -29,6 +30,67 @@ const AuthProvider = (props: any) => {
       },
     })
   );
+
+  const acquireAccessToken = () => {
+    const userJSON = localStorage.getItem(config.localStorage.userKey);
+    let user: User | undefined;
+
+    if (userJSON) {
+      user = JSON.parse(userJSON);
+    }
+    if (!user || !user.token || !user.homeAccountId) {
+      return;
+    }
+
+    console.log(2, user?.homeAccountId);
+    if (publicClientApplication.getAccountByHomeId(user?.homeAccountId || "")) {
+      var tokenRequest = {
+        scopes: ["api://9911dd89-b9c5-4de4-b3bb-265d5c214e91/read-test"],
+      };
+      publicClientApplication.setActiveAccount(
+        publicClientApplication.getAccountByHomeId(user.homeAccountId)
+      );
+      publicClientApplication
+        .acquireTokenSilent(tokenRequest)
+        .then((response) => {
+          // get access token from response
+          if (localStorage.getItem(config.localStorage.userKey) != null) {
+            let cloneUser: User = JSON.parse(
+              localStorage.getItem(config.localStorage.userKey) || ""
+            );
+            setUser({ ...cloneUser, accessToken: response.accessToken });
+            localStorage.setItem(
+              config.localStorage.userKey,
+              JSON.stringify({
+                ...cloneUser,
+                accessToken: response.accessToken,
+              })
+            );
+          }
+          console.log("accessToken", response);
+        })
+        .catch((err) => {
+          console.log(err);
+          // could also check if err instance of InteractionRequiredAuthError if you can import the class.
+          if (err.name === "InteractionRequiredAuthError") {
+            return publicClientApplication
+              .acquireTokenPopup(tokenRequest)
+              .then((response) => {
+                // get access token from response
+                console.log("OK");
+              })
+              .catch((err) => {
+                console.log("err nestewd", err);
+                // handle error
+              });
+          }
+        });
+    } else {
+      console.log(
+        "user is not logged in, you will need to log them in to acquire a token"
+      );
+    }
+  };
 
   const login = async () => {
     try {
@@ -106,6 +168,7 @@ const AuthProvider = (props: any) => {
         logout,
         isStoredToken,
         restore,
+        acquireAccessToken,
       }}
     >
       <>{props.children}</>

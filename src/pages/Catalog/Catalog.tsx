@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import CatalogDetail from "components/CatalogDetail/CatalogDetail";
 import { useDispatch } from 'react-redux';
 import { changeTitle } from "store/title/titleSlice";
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag, Space, Button } from 'antd';
+import { getFlows } from "services/catalog";
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -97,9 +98,19 @@ const Catalog = () => {
     dispatch(changeTitle("Flow Catalog"));
   })
 
+  const callApiTest = async () => {
+    try {
+      const data = await getFlows(1, 1)
+      console.log(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (<>
     <CatalogDetail />
     <Table columns={columns} dataSource={data} />
+    <Button onClick={callApiTest}>callApiTest</Button>
   </>
   )
 }

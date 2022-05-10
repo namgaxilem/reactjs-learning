@@ -10,7 +10,8 @@ const AADConfig = {
   redirectUri: 'http://localhost:3000',
   logoutRedirectUri: 'http://localhost:3000/login',
   scopes: [
-      'user.read'
+      'user.read',
+      'api://9911dd89-b9c5-4de4-b3bb-265d5c214e91/read-test'
   ],
   authority: 'https://login.microsoftonline.com/d400665f-0274-46fe-899b-38ed0885144a'
 }

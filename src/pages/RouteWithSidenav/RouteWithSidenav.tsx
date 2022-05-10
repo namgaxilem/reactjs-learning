@@ -1,19 +1,16 @@
 import {
-  DesktopOutlined,
-  DownOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  DesktopOutlined, HomeOutlined, PieChartOutlined,
+  TeamOutlined
 } from "@ant-design/icons";
 import {
-  Avatar,
-  Button,
-  Dropdown,
+  Avatar, Dropdown,
   Layout,
   Menu,
   Space,
-  Typography,
+  Typography
 } from "antd";
 import { useAuth } from "context/auth";
+import Rooms from "pages/Rooms/Rooms";
 import { useEffect, useState } from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import Catalog from "../Catalog/Catalog";
@@ -33,9 +30,9 @@ const RouteWithSidenav = () => {
     }
   };
 
-  useEffect(() => {
-    restore();
-  }, []);
+  // useEffect(() => {
+  //   restore();
+  // }, []);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -69,6 +66,11 @@ const RouteWithSidenav = () => {
           <Menu.Item key="3" icon={<TeamOutlined />}>
             <NavLink to="/environments">
               <div>Environments</div>
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<HomeOutlined />}>
+            <NavLink to="/rooms">
+              <div>Rooms</div>
             </NavLink>
           </Menu.Item>
         </Menu>
@@ -105,6 +107,7 @@ const RouteWithSidenav = () => {
               <Route path="/dashboard" element={<Dashboard />}></Route>
               <Route path="/catalog" element={<Catalog />}></Route>
               <Route path="/environments" element={<Environments />}></Route>
+              <Route path="/rooms" element={<Rooms />}></Route>
               <Route path="/*" element={<Navigate to="/dashboard" />}></Route>
             </Routes>
           </div>

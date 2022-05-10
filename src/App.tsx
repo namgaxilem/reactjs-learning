@@ -3,7 +3,7 @@ import DeployFlow from "pages/DeployFlow/DeployFlow";
 import Initializer from "pages/Initializer/Initializer";
 import Login from "pages/Login/Login";
 import RouteWithSidenav from "pages/RouteWithSidenav/RouteWithSidenav";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.less";
 
@@ -28,7 +28,12 @@ const publicRoutes: CustomRoute[] = [
 ];
 
 const App = () => {
-  const { isStoredToken } = useAuth();
+  const { isStoredToken, acquireAccessToken, restore } = useAuth();
+
+  useEffect(() => {
+    restore()
+    acquireAccessToken()
+  }, [])
 
   return (
     <BrowserRouter>

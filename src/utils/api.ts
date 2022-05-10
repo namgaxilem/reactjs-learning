@@ -1,5 +1,6 @@
 import axios, { Axios } from 'axios'
 import { config } from 'config/config'
+import User from 'types/User'
 
 class RestClient {
   private client: Axios
@@ -41,15 +42,16 @@ class RestClient {
     let cfg = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': ''
-      }
+        'Authorization': ``
+      },
+      withCredentials: true
     }
 
     const user = localStorage.getItem(config.localStorage.userKey)
 
     if (user) {
-      const userObj = JSON.parse(user)
-      cfg.headers.Authorization = userObj.token || ''
+      const userObj: User = JSON.parse(user)
+      cfg.headers.Authorization = `Bearer ${userObj.accessToken}` || ''
     }
 
     return { ...cfg, ...c }

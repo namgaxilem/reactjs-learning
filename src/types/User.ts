@@ -3,6 +3,7 @@ interface User {
     name?: string | null
     tokenType?: string | null
     token?: string | null,
+    accessToken?: string | null,
     homeAccountId?: string | null
     expiresOn?: number | null
 }
