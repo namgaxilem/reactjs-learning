@@ -1,8 +1,23 @@
+declare global {
+  interface Window {
+    env: any
+  }
+}
+  
+  // change with your own variables
+// type EnvType = {
+//   REACT_APP_COLOR: string,
+//   REACT_APP_MAIN_TEXT: string,
+//   REACT_APP_LINK_URL: string,
+//   REACT_APP_LOGO_URL: string,
+//   REACT_APP_CATALOG_URL: string
+// }
+
 const config = {
   localStorage: {
     userKey: 'auth_user'
   },
-  catalogURL: process.env.REACT_APP_CATALOG_URL || 'http://localhost:8080/v1/catalog'
+  catalogURL: (window.env && window.env.REACT_APP_CATALOG_URL) || 'http://localhost:8080/v1/catalog'
 }
 
 const AADConfig = {

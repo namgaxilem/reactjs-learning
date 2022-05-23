@@ -57,12 +57,13 @@ const AuthProvider = (props: any) => {
             let cloneUser: User = JSON.parse(
               localStorage.getItem(config.localStorage.userKey) || ""
             );
-            setUser({ ...cloneUser, accessToken: response.accessToken });
+            setUser({ ...cloneUser, accessToken: response.accessToken, idToken: response.idToken });
             localStorage.setItem(
               config.localStorage.userKey,
               JSON.stringify({
                 ...cloneUser,
                 accessToken: response.accessToken,
+                idToken: response.idToken
               })
             );
           }
@@ -97,7 +98,7 @@ const AuthProvider = (props: any) => {
         scopes: AADConfig.scopes,
       });
 
-      if (loginResponse) {
+      if (loginResponse) { console.log("hehe", loginResponse)
         let cloneUser = {
           ...user,
           email: loginResponse.account && loginResponse.account.username,

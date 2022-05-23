@@ -1,13 +1,14 @@
-FROM node:latest
+FROM nginx
 
-WORKDIR /usr/src/app
+WORKDIR /usr/share/nginx/html
 
-COPY package*.json ./
+RUN rm -rf ./*
 
-RUN npm install --force
+COPY /build .
+COPY /nginx.conf /etc/nginx/nginx.conf
+COPY /set-env.sh .
 
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "cd /usr/share/nginx/html && ./set-env.sh && nginx -g 'daemon off;'"]
+# ENTRYPOINT ["/bin/sh", "-c" , "npx react-inject-env set && echo 'hihi test' && npm start"]

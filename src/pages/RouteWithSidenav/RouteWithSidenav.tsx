@@ -9,6 +9,7 @@ import {
   Space,
   Typography
 } from "antd";
+import { config } from "config/config";
 import { useAuth } from "context/auth";
 import Rooms from "pages/Rooms/Rooms";
 import { useState } from "react";
@@ -74,6 +75,14 @@ const RouteWithSidenav = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className={styles.siteLayoutBackground} style={{ padding: 0 }}>
+        <Dropdown overlay={menu} placement="bottom" trigger={["click"]}>
+            <Space className={styles.avatar}>
+              <Typography.Text>{config.catalogURL}</Typography.Text>
+              <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+                {"ENV"}
+              </Avatar>
+            </Space>
+          </Dropdown>
           <Dropdown overlay={menu} placement="bottom" trigger={["click"]}>
             <Space className={styles.avatar}>
               <Typography.Text>{user && user.name}</Typography.Text>
