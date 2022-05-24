@@ -7,6 +7,7 @@ RUN rm -rf ./*
 COPY /build .
 COPY /nginx.conf /etc/nginx/nginx.conf
 COPY /set-env.sh .
+COPY /build/index.html ./index.tpl.html
 
 EXPOSE 80
 # CMD ["nginx", "-g", "daemon off;"]

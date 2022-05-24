@@ -97,6 +97,7 @@ const Rooms = () => {
     <>
       <Divider orientation="left" orientationMargin="0">
         Tầng trệt
+        <button onClick={() => console.log("test", window.env)}>test</button>
       </Divider>
 
       <Space wrap={true}>
